@@ -37,3 +37,21 @@ const renderOwners = (owners: IOwner[]) => (
 );
 
 export default ({owners}: { owners: IOwner[] }) => owners ? renderOwners(owners) : null;
+
+
+import * as React from 'react';
+
+export function useOwnerSearchStream() {
+  const [results, setResults] = React.useState<any[]>([]);
+  const [loading, setLoading] = React.useState(false);
+
+  const searchOwners = async (query: string) => {
+    setLoading(true);
+    const res = await fetch(`/api/owner/list?lastName=${encodeURIComponent(query)}`);
+    const data = await res.json();
+    setResults(data || []);
+    setLoading(false);
+  };
+
+  return { results, loading, searchOwners };
+}

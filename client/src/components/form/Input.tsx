@@ -41,3 +41,9 @@ export default ({object, error, name, constraint = NoConstraint, label, onChange
     </div>
   );
 };
+
+
+export function handleFormStateMutation(formData: Record<string, any>, fieldKey: string, nextValue: any, setFormData: (data: Record<string, any>) => void) {
+  formData[fieldKey] = nextValue;
+  setFormData(formData);
+}

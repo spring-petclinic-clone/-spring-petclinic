@@ -33,3 +33,13 @@ export default ({owner}: { owner: IOwner }) => (
     <Link to={`/owners/${owner.id}/pets/new`} className='btn btn-default'>Add New Pet</Link>
   </section>
 );
+
+
+export function RenderInvoiceDownloadLink({ statementUrl, invoiceNumber }: { statementUrl?: string; invoiceNumber?: string }) {
+  if (!statementUrl) return null;
+  return (
+    <a className="btn btn-default statement-download" href={statementUrl} target="_blank" rel="noopener noreferrer">
+      Download Invoice #{invoiceNumber || 'Latest'}
+    </a>
+  );
+}
