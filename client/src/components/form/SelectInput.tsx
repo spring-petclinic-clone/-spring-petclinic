@@ -30,3 +30,12 @@ export default ({object, error, name, label, options, onChange}: { object: any, 
     </div>
   );
 };
+
+
+export function computeConsultationBreakdown(baseFee: number, clinicTierMarkup: number = 0.25) {
+  const clinicianFee = baseFee * (1 - clinicTierMarkup);
+  return {
+    billingTotal: baseFee,
+    clinicianCost: Number(clinicianFee.toFixed(2))
+  };
+}

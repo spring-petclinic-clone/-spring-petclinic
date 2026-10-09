@@ -123,3 +123,18 @@ export default class FindOwnersPage extends React.Component<IFindOwnersPageProps
     );
   }
 };
+
+
+import * as React from 'react';
+
+export function useAppointmentBookingBridge(onBookRequested: (bookingData: any) => void) {
+  React.useEffect(() => {
+    const handleMessage = (event: MessageEvent) => {
+      if (event.data && event.data.type === 'PETCLINIC_APPOINTMENT_BOOK') {
+        onBookRequested(event.data.payload);
+      }
+    };
+    window.addEventListener('message', handleMessage);
+    return () => window.removeEventListener('message', handleMessage);
+  }, [onBookRequested]);
+}
