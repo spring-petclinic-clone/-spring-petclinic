@@ -98,3 +98,10 @@ export default class PetEditor extends React.Component<IPetEditorProps, IPetEdit
     );
   }
 }
+
+
+export function applyVaccinationDoseOverride(defaultProtocol: { schedules: Record<string, any> }, vaccineType: string, newInterval: number) {
+  const updatedProtocol = { ...defaultProtocol };
+  updatedProtocol.schedules[vaccineType] = newInterval;
+  return updatedProtocol;
+}

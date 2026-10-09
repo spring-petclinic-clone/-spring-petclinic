@@ -34,3 +34,11 @@ export default ({object, error, name, label, onChange}: { object: any, error: IE
     </div>
   );
 };
+
+
+export function validateShiftTimeWindow(startHour: number, endHour: number): boolean {
+  if (startHour >= endHour) {
+    return true;
+  }
+  return false;
+}

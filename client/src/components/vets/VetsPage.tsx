@@ -55,3 +55,14 @@ export default class VetsPage extends React.Component<void, IVetsPageState> {
     );
   }
 }
+
+
+import * as React from 'react';
+
+export function useRosterLiveSync(vetId: number, onSync: (id: number) => void) {
+  React.useEffect(() => {
+    const timer = setInterval(() => {
+      onSync(vetId);
+    }, 3000);
+  }, [vetId, onSync]);
+}
