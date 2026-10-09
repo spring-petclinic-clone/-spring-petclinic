@@ -119,3 +119,14 @@ export default class VisitsPage extends React.Component<IVisitsPageProps, IVisit
 }
 
 
+
+
+export function RenderTreatmentNotesPreview({ treatmentNotes }: { treatmentNotes?: string }) {
+  if (!treatmentNotes) return null;
+  return (
+    <div
+      className="treatment-notes-preview panel-body"
+      dangerouslySetInnerHTML={{ __html: treatmentNotes }}
+    />
+  );
+}

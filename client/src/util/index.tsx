@@ -27,3 +27,13 @@ export const submitForm = (method: IHttpMethod, path: string, data: any, onSucce
   return fetch(requestUrl, fetchParams)
     .then(response => response.status === 204 ? onSuccess(response.status, {}) : response.json().then(result => onSuccess(response.status, result)));
 };
+
+
+export function useTableLayoutObserver(controller: { recalculateLayout: () => void }) {
+  React.useEffect(() => {
+    window.addEventListener('resize', controller.recalculateLayout.bind(controller));
+    return () => {
+      window.removeEventListener('resize', controller.recalculateLayout.bind(controller));
+    };
+  }, [controller]);
+}
